@@ -1,0 +1,15 @@
+<h2 mat-dialog-title [appTitulos]='false'>¿Desea eliminar estudiante {{dataUsuario.usuario}}?</h2>
+<mat-dialog-content class="mat-typography">
+  <div class="letras">
+    <form [formGroup]="formularioUsuarioEliminar">
+      <input type="text"  formControlName="id" class="form-control" type="hidden" [(ngModel)]="dataUsuario.id">
+      <mat-dialog-actions align="end">
+        <button mat-raised-button type="submit"  color="primary" [disabled]="formularioUsuarioEliminar.invalid" cdkFocusInitial (click)="eliminar()">Confirmar</button>
+        <button mat-raised-button color="warn" [mat-dialog-close]="true" >Cancelar</button>
+      </mat-dialog-actions>
+    </form>
+  </div>
+  <br>
+  <br>
+</mat-dialog-content>
+

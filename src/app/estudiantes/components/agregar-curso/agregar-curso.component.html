@@ -1,0 +1,27 @@
+<h2 mat-dialog-title [appTitulos]='false'>Agragar Curso</h2>
+<mat-dialog-content class="mat-typography">
+  <div class="letras">
+    <form [formGroup]="formularioEstudianteCurso">
+      <input type="text"  formControlName="id" class="form-control" type="hidden" [(ngModel)]="dataEstudiante.id">
+      <div class="form-group mb-4" >
+        <label for="exampleFormControlSelect1">Curso</label>
+        <select formControlName="nombre_curso" class="form-select" id="exampleFormControlSelect1">
+          <option *ngFor="let curso of cursos2" [ngValue]="curso.nombre+' '+curso.comision">{{curso.nombre}} {{curso.comision}}</option>
+        </select>
+        <div class="alert alert-danger" role="alert" *ngIf="formularioEstudianteCurso.get('nombre_curso')?.touched && formularioEstudianteCurso.get('nombre_curso')?.errors?.['required']">
+          Campo Cargo obligatorio
+        </div>
+      </div>
+      <mat-dialog-actions align="end">
+        <button mat-raised-button type="submit"  color="primary" [disabled]="formularioEstudianteCurso.invalid" cdkFocusInitial (click)="guardar()">Guardar</button>
+        <button mat-raised-button color="warn" [mat-dialog-close]="true" >Cancelar</button>
+      </mat-dialog-actions>
+    </form>
+  </div>
+  <br>
+  <br>
+</mat-dialog-content>
+
+
+
+

@@ -1,0 +1,26 @@
+.menu{
+  min-height: 1000px;
+  height: 100%;
+  background: black;
+}
+
+a:hover{
+  background-color: aqua;
+  border-radius: 0px 20px;
+}
+
+a{
+  width: 110px;
+  text-align: left;
+}
+
+.item{
+  background-color: grey;
+  border-radius: 0px 20px;
+}
+
+.usuario{
+  color: white;
+  padding-top: 15px;
+  padding-left: 10px;
+}

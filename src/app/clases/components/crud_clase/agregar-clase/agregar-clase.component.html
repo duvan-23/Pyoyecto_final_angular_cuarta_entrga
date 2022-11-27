@@ -1,0 +1,59 @@
+<h2 mat-dialog-title [appTitulos]='false'>Agragar Clase</h2>
+<mat-dialog-content class="mat-typography">
+  <div class="letras">
+    <form [formGroup]="formularioClase">
+      <div class="form-group mb-4">
+        <label for="exampleInputEmail1">Nombre Clase</label>
+        <input type="text"  formControlName="nombre" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ingrese nombre">
+        <div class="alert alert-danger" role="alert" *ngIf="formularioClase.get('nombre')?.touched && formularioClase.get('nombre')?.errors?.['required']">
+          Campo Nombre Obligatorio
+        </div>
+      </div>
+      <div class="form-group mb-4">
+        <label for="exampleInputEmail1">Comisión</label>
+        <input type="text"  formControlName="comision" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ingrese comision">
+        <div class="alert alert-danger" role="alert" *ngIf="formularioClase.get('comision')?.touched && formularioClase.get('comision')?.errors?.['required']">
+          Campo Comisión Obligatorio
+        </div>
+      </div>
+      <div class="form-group mb-4">
+        <label for="exampleInputEmail1">Profesor</label>
+        <input type="text"  formControlName="profesor" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ingrese Profesor">
+        <div class="alert alert-danger" role="alert" *ngIf="formularioClase.get('profesor')?.touched && formularioClase.get('profesor')?.errors?.['required']">
+          Campo Profesor Obligatorio
+        </div>
+      </div>
+      <div class="form-group mb-4">
+        <mat-form-field appearance="fill" class="tamaño">
+          <mat-label>Inicio del curso</mat-label>
+          <input matInput [matDatepicker]="fechaInicio" formControlName="fechaInicio">
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle matSuffix [for]="fechaInicio"></mat-datepicker-toggle>
+          <mat-datepicker #fechaInicio></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div class="form-group mb-4">
+        <mat-form-field appearance="fill" class="tamaño">
+          <mat-label>Fin del curso</mat-label>
+          <input matInput [matDatepicker]="fechaFinal" formControlName="fechaFinal">
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle matSuffix [for]="fechaFinal"></mat-datepicker-toggle>
+          <mat-datepicker #fechaFinal></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div class="form-check mb-4">
+        <label  class="form-check-label" for="exampleInputEmail1">Activo</label>
+        <input mdbCheckbox class="form-check-input" type="checkbox" formControlName="inscripcionAbierta" >
+      </div>
+      <mat-dialog-actions align="end">
+        <button mat-raised-button type="submit"  color="primary" [disabled]="formularioClase.invalid" cdkFocusInitial (click)="guardar()">Guardar</button>
+        <button mat-raised-button color="warn" [mat-dialog-close]="true" >Cancelar</button>
+      </mat-dialog-actions>
+    </form>
+  </div>
+  <br>
+  <br>
+</mat-dialog-content>
+
+
+

@@ -1,0 +1,38 @@
+<h1 [appTitulos]='false' >Descripción Estudiante</h1>
+
+<br>
+<div *ngIf="listaEstudiantes$|async as estudiante">
+  <div class="row">
+    <div class="col-md-4 offset-md-2 bg-secondary p-4">
+      <div class="text-start ">
+        <h3>Nombre</h3>
+        <h3>Apellido</h3>
+        <h3>Edad</h3>
+        <h3>Correo</h3>
+        <h3>Cursos:</h3>
+      </div>
+    </div>
+    <div class="col-md-4  bg-secondary p-4">
+        <div class="text-start ">
+          <h3>{{estudiante[0].nombre}}</h3>
+          <h3> {{estudiante[0].apellido}}</h3>
+          <h3>{{estudiante[0].edad}}</h3>
+          <h3>{{estudiante[0].correo}}</h3>
+          <h3>
+            <ul>
+              <li *ngFor="let curso of estudiante[0].nombre_curso">
+                {{curso}}
+              </li>
+            </ul>
+          </h3>
+        </div>
+    </div>
+    <div class="col-md-8 offset-md-2 bg-secondary p-4">
+      <ng-container *ngIf="session$ | async as session">
+        <button mat-raised-button color="primary" (click)="agregarCurso(estudiante[0].id)" class="me-4" *ngIf="session.usuarioActivo?.admin">Agregar Curso</button>
+        <button mat-raised-button color="warn" (click)="quitarCurso(estudiante[0].id)" *ngIf="session.usuarioActivo?.admin">Quitar Curso</button>
+      </ng-container>
+    </div>
+  </div>
+</div>
+

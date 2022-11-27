@@ -1,0 +1,38 @@
+<h2 mat-dialog-title [appTitulos]='false'>Agragar Usuario {{dataUsuario.usuario}}</h2>
+<mat-dialog-content class="mat-typography">
+  <div class="letras">
+    <form [formGroup]="formularioEditarUsuario">
+      <input type="text"  formControlName="id" class="form-control" type="hidden" [(ngModel)]="dataUsuario.id">
+      <div class="form-group mb-4">
+        <label for="exampleInputEmail1">Nombre Usuario</label>
+        <input type="text"  formControlName="usuario" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ingrese nombre" [(ngModel)]="dataUsuario.usuario">
+        <div class="alert alert-danger" role="alert" *ngIf="formularioEditarUsuario.get('usuario')?.touched && formularioEditarUsuario.get('usuario')?.errors?.['required']">
+          Campo Nombre Obligatorio
+        </div>
+      </div>
+      <div class="form-group mb-4">
+        <mat-slide-toggle formControlName="admin" [(ngModel)]="dataUsuario.admin">Administrador</mat-slide-toggle>
+      </div>
+      <div class="form-group mb-4">
+        <mat-slide-toggle formControlName="superAdmin" [(ngModel)]="dataUsuario.superAdmin">Super Administrador</mat-slide-toggle>
+      </div>
+      <div class="form-group mb-4" >
+        <label for="exampleFormControlInput1">Contraseña</label>
+        <input type="text" formControlName="contrasena" class="form-control" id="exampleFormControlInput1" [(ngModel)]="dataUsuario.contrasena">
+        <div class="alert alert-danger" role="alert" *ngIf="formularioEditarUsuario.get('contrasena')?.touched && formularioEditarUsuario.get('contrasena')?.errors?.['required']">
+          Campo Contraseña obligatorio
+        </div>
+      </div>
+      <mat-dialog-actions align="end">
+        <button mat-raised-button type="submit"  color="primary" [disabled]="formularioEditarUsuario.invalid" cdkFocusInitial (click)="guardar()">Guardar</button>
+        <button mat-raised-button color="warn" [mat-dialog-close]="true" >Cancelar</button>
+      </mat-dialog-actions>
+    </form>
+  </div>
+  <br>
+  <br>
+</mat-dialog-content>
+
+
+
+

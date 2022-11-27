@@ -1,0 +1,32 @@
+<h1 [appTitulos]='false' class="mt-4" >Lista de cursos</h1>
+<br>
+<!-- <div class="row">
+  <mat-form-field class="col-md-6 offset-md-3" >
+    <mat-label>Filtrar por nombre de curso o numero  de comisión</mat-label>
+    <input type="text" matInput [(ngModel)]="filtro">
+  </mat-form-field>
+</div> -->
+<br>
+<div class="row">
+  <div *ngFor="let curso of cursos$|async"class="col-md-4">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>{{curso.nombre}}</mat-card-title>
+        <mat-card-subtitle>{{curso.comision}}</mat-card-subtitle>
+      </mat-card-header>
+
+      <img alt="coderhouse" mat-card-image [src]="curso.imagen">
+
+      <mat-card-content>
+        <p>Impartido por {{curso.profesor}}</p>
+        <p [appMatriculaStyle]="curso.inscripcionAbierta">{{curso.inscripcionAbierta | matriculas: 'Matricula abierta': 'Matricula cerrada' | uppercase}}</p>
+      </mat-card-content>
+      <mat-card-actions align="end">
+        <button mat-icon-button color="primary" (click)="verCurso(curso.id)">
+          <mat-icon>visibility</mat-icon>
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>
+

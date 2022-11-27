@@ -1,0 +1,55 @@
+<h2 mat-dialog-title [appTitulos]='false'>Agragar Estudiantes</h2>
+<mat-dialog-content class="mat-typography">
+  <div class="letras">
+    <form [formGroup]="formularioEstudiante">
+      <div class="form-group mb-4">
+        <label for="exampleInputEmail1">Nombre Empleado</label>
+        <input type="text"  formControlName="nombre" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ingrese nombre">
+        <div class="alert alert-danger" role="alert" *ngIf="formularioEstudiante.get('nombre')?.touched && formularioEstudiante.get('nombre')?.errors?.['required']">
+          Campo Nombre Obligatorio
+        </div>
+      </div>
+      <div class="form-group mb-4">
+        <label for="exampleInputEmail1">Apellido Empleado</label>
+        <input type="text"  formControlName="apellido" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ingrese apellido">
+        <div class="alert alert-danger" role="alert" *ngIf="formularioEstudiante.get('apellido')?.touched && formularioEstudiante.get('apellido')?.errors?.['required']">
+          Campo Apellido Obligatorio
+        </div>
+      </div>
+      <div class="form-group mb-4">
+        <label for="exampleInputEmail1">Edad</label>
+        <input type="number"  formControlName="edad" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ingrese edad">
+        <div class="alert alert-danger" role="alert" *ngIf="formularioEstudiante.get('edad')?.touched && formularioEstudiante.get('edad')?.errors?.['required']">
+          Campo Apellido Obligatorio
+        </div>
+      </div>
+      <div class="form-group mb-4" >
+        <label for="exampleFormControlInput1">Email address</label>
+        <input type="email" formControlName="correo" class="form-control" id="exampleFormControlInput1" placeholder="Ingrese  Correo">
+        <div class="alert alert-danger" role="alert" *ngIf="formularioEstudiante.get('correo')?.touched && formularioEstudiante.get('correo')?.errors?.['required']">
+          Campo Correo obligatorio
+        </div>
+        <div class="alert alert-danger" role="alert" *ngIf="formularioEstudiante.get('correo')?.touched && formularioEstudiante.get('correo')?.errors?.['pattern']">
+          El formato de correo no es correcto
+        </div>
+      </div>
+      <div class="form-group mb-4" >
+        <label for="exampleFormControlSelect1">Curso</label>
+        <select formControlName="nombre_curso" class="form-select" id="exampleFormControlSelect1">
+          <option *ngFor="let curso of cursos" [ngValue]="curso.nombre+' '+curso.comision">{{curso.nombre}} {{curso.comision}}</option>
+        </select>
+        <div class="alert alert-danger" role="alert" *ngIf="formularioEstudiante.get('nombre_curso')?.touched && formularioEstudiante.get('nombre_curso')?.errors?.['required']">
+          Campo Cargo obligatorio
+        </div>
+      </div>
+      <mat-dialog-actions align="end">
+        <button mat-raised-button type="submit"  color="primary" [disabled]="formularioEstudiante.invalid" cdkFocusInitial (click)="guardar()">Guardar</button>
+        <button mat-raised-button color="warn" [mat-dialog-close]="true" >Cancelar</button>
+      </mat-dialog-actions>
+    </form>
+  </div>
+  <br>
+  <br>
+</mat-dialog-content>
+
+

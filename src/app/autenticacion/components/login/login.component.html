@@ -1,0 +1,33 @@
+
+<div class="row">
+  <div class="col-md-6 offset-md-3 inicio mt-4 pt-4  pb-4">
+    <h1 [appTitulos]='false'>Iniciar sesion</h1>
+
+    <form [formGroup]="formulario" (ngSubmit)="login()" autocomplete="off" >
+
+        <div class="col-md-8 offset-md-2 mt-4 mb-2">
+          <mat-form-field appearance="fill" class="tamaño">
+            <mat-label>Usuario</mat-label>
+            <input matInput formControlName="usuario">
+          </mat-form-field>
+        </div>
+        <div class="col-md-8 offset-md-2">
+          <mat-form-field appearance="fill" class="tamaño">
+            <mat-label>Contraseña</mat-label>
+            <input matInput formControlName="contrasena">
+          </mat-form-field>
+        </div>
+        <!-- <div class="col-md-5 offset-md-2">
+          <mat-slide-toggle formControlName="admin">Administrador</mat-slide-toggle>
+        </div> -->
+        <div class="col-md-6 offset-md-3 mt-4">
+          <button type="submit" mat-raised-button color="primary" [disabled]="formulario.invalid" >Entrar</button>
+        </div>
+    </form>
+    <br>
+    <h3 [appTitulos]='false'>Usuarios: </h3>
+    <h4>cliente: Leora_Doyle60 Contraseña: 5BW2BlY5WyKYvTr</h4>
+    <h4>Admin: Irving.Dare18 Contraseña: pUUuW3sDWskT8NU</h4>
+    <h4>Super Admin: Raleigh_Vandervort64 Contraseña: ndlpmBkVWD4_FHU</h4>
+  </div>
+</div>

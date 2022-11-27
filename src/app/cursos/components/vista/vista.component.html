@@ -1,0 +1,42 @@
+<h1 [appTitulos]='false' >Descripción Curso</h1>
+<!-- <p>{{id}}</p> -->
+<br>
+<div *ngIf="curso$|async as curso">
+  <div class="row">
+    <div class="col-md-4 offset-md-2 bg-secondary p-4">
+      <div class="text-start ">
+        <h3>Curso</h3>
+        <h3>Comision</h3>
+        <h3>Profesor</h3>
+        <h3>Estado Matricula</h3>
+        <h3>Fecha Inicio</h3>
+        <h3>Fecha Final</h3>
+        <h3>Estudiantes</h3>
+      </div>
+    </div>
+    <div class="col-md-4  bg-secondary p-4">
+        <div class="text-start ">
+          <h3>{{curso.nombre}}</h3>
+          <h3> {{curso.comision}}</h3>
+          <h3>{{curso.profesor}}</h3>
+          <h3>{{curso.inscripcionAbierta | matriculas: 'Abierta': 'Cerrada'}}</h3>
+          <h3>{{curso.fechaInicio| date: 'dd/MM/YYYY'}} </h3>
+          <h3>{{curso.fechaFinal| date: 'dd/MM/YYYY'}}</h3>
+          <h3>
+            <ol>
+              <li *ngFor="let estudiante of estudiante2">
+                {{estudiante[0].nombre}} {{estudiante[0].apellido}}
+              </li>
+            </ol>
+          </h3>
+        </div>
+    </div>
+    <div class="col-md-8 offset-md-2 bg-secondary p-4">
+      <ng-container *ngIf="session$ | async as session">
+
+        <button mat-raised-button color="warn" (click)="quitarCurso(curso.nombre+' '+curso.comision)" *ngIf="session.usuarioActivo?.admin">Quitar Estudiante</button>
+      </ng-container>
+  </div>
+  </div>
+</div>
+

@@ -1,0 +1,23 @@
+<h2 mat-dialog-title [appTitulos]='false'>Quitar Estudiante</h2>
+<mat-dialog-content class="mat-typography">
+  <div class="letras">
+    <form [formGroup]="formularioEstudianteCurso">
+      <div class="form-group mb-4" >
+        <label for="exampleFormControlSelect1">Estudiante</label>
+        <select formControlName="id_estudiante" class="form-select" id="exampleFormControlSelect1">
+          <option *ngFor="let estudiante of estudiante2" [ngValue]="estudiante.id">{{estudiante.nombre}} {{estudiante.apellido}}</option>
+        </select>
+        <div class="alert alert-danger" role="alert" *ngIf="formularioEstudianteCurso.get('id_estudiante')?.touched && formularioEstudianteCurso.get('id_estudiante')?.errors?.['required']">
+          Campo Estudiante obligatorio
+        </div>
+      </div>
+      <mat-dialog-actions align="end">
+        <button mat-raised-button type="submit"  color="primary" [disabled]="formularioEstudianteCurso.invalid" cdkFocusInitial (click)="guardar()">Guardar</button>
+        <button mat-raised-button color="warn" [mat-dialog-close]="true" >Cancelar</button>
+      </mat-dialog-actions>
+    </form>
+  </div>
+  <br>
+  <br>
+</mat-dialog-content>
+
