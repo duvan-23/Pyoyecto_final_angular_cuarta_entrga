@@ -1,9 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { CursosService } from 'src/app/clases/services/cursos.service';
+import { SessionService } from 'src/app/core/services/session.service';
 import { Curso } from 'src/app/models/curso';
+import { Session } from 'src/app/models/sesion';
 import { Tutor } from 'src/app/models/tutor';
 import { agregarTutor, cargarTutores, eliminarTutor } from '../../state/tutores.actions';
 import { TutorState } from '../../state/tutores.reducer';
@@ -16,15 +19,17 @@ import { selectTutores } from '../../state/tutores.selectors';
 })
 export class TutorComponent implements OnInit {
   cursos$!:  Observable<Curso[]>;
-  tutores$!:any;
   cursoSeleccionado!: Curso;
   nombreTutor!: string;
   correoTutor!: string;
   dataSource!:MatTableDataSource<Tutor>;
   columnas: string[] = ['id', 'curso', 'tutor', 'acciones'];
+  session$!:Observable<Session>;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
   constructor(
     private storeTutores: Store<TutorState>,
     private cursoService: CursosService,
+    private sessionService: SessionService
   ) {
     this.storeTutores.dispatch(cargarTutores());
    }
@@ -32,22 +37,22 @@ export class TutorComponent implements OnInit {
   ngOnInit(): void {
 
     this.cursos$ = this.cursoService.obtenerCursos();
-    // this.tutores$= this.storeTutores.select(selectTutores);
     this.storeTutores.select(selectTutores).subscribe((tutores: Tutor[])=>{
       this.dataSource= new MatTableDataSource<Tutor>(tutores);
+      this.dataSource.paginator = this.paginator;
     });
+    this.session$ = this.sessionService.obtenerSession();
   }
 
   inscribir(curso: Curso,nombre:string,correo:string){
-    // if(this.usuarioActivo){
-      const tutor: Tutor ={
-        id:0,
-        nombre: nombre,
-        correo: correo,
-        curso: curso
-      }
-      this.storeTutores.dispatch(agregarTutor({tutor}));
-    // }
+    const tutor: Tutor ={
+      id:0,
+      nombre: nombre,
+      correo: correo,
+      curso: curso
+    }
+    this.storeTutores.dispatch(agregarTutor({tutor}));
+    this.dataSource.paginator = this.paginator;
   }
 
   editar(tutor:Tutor){
@@ -55,5 +60,6 @@ export class TutorComponent implements OnInit {
   }
   eliminar(tutor:Tutor){
     this.storeTutores.dispatch(eliminarTutor({tutor}));
+    this.dataSource.paginator = this.paginator;
   }
 }
