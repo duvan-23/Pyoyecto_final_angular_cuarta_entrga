@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
     private router:Router
   ) {
     this.formulario = new FormGroup({
-      usuario: new FormControl('Raleigh_Vandervort64',[Validators.required]),
+      usuario: new FormControl('Raleigh',[Validators.required]),
       contrasena: new FormControl('ndlpmBkVWD4_FHU',[Validators.required])
     })
   }
@@ -32,7 +32,6 @@ export class LoginComponent implements OnInit, AfterViewInit {
   }
   login(){
     this.sessionService.login(this.formulario.value.usuario,this.formulario.value.contrasena);
-    // this.router.navigate(['inicio']);
   }
 
 }
