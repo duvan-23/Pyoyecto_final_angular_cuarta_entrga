@@ -25,7 +25,7 @@ export class UsuariosService {
       headers: new HttpHeaders(environment.header)
     }).pipe(
       catchError(this.manejaError)
-    ).subscribe(console.log);
+    ).subscribe();
   }
   // obtenerId():number{
   //   return this.cursos[this.cursos.length -1].id+1;
@@ -40,12 +40,12 @@ export class UsuariosService {
   editarUsuario(usuario: Usuario){
     this.http.put<Usuario>(`${environment.api}/usuariosProyecto/${usuario.id}`,usuario).pipe(
       catchError(this.manejaError)
-    ).subscribe(console.log);
+    ).subscribe();
   }
   eliminarUsuario(id: number){
     this.http.delete<Usuario>(`${environment.api}/usuariosProyecto/${id}`).pipe(
       catchError(this.manejaError)
-    ).subscribe(console.log);
+    ).subscribe();
   }
   private manejaError(error: HttpErrorResponse){
     if(error.error instanceof ErrorEvent){

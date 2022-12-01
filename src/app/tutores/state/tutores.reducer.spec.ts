@@ -1,6 +1,6 @@
 import { reducer, initialState } from './tutores.reducer';
 
-describe('Tutores Reducer', () => {
+xdescribe('Tutores Reducer', () => {
   describe('an unknown action', () => {
     it('should return the previous state', () => {
       const action = {} as any;

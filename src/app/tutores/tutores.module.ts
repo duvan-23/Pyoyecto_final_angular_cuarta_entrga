@@ -8,11 +8,13 @@ import { TutoresEffects } from './state/tutores.effects';
 import { reducer, tutoresFeatureKey } from './state/tutores.reducer';
 import { StoreModule } from '@ngrx/store';
 import { SharedModule } from '../shared/shared.module';
+import { EditarTutorComponent } from './components/editar-tutor/editar-tutor.component';
 
 
 @NgModule({
   declarations: [
-    TutorComponent
+    TutorComponent,
+    EditarTutorComponent
   ],
   imports: [
     CommonModule,

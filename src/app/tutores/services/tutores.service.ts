@@ -13,9 +13,6 @@ export class TutoresService {
     private http:HttpClient
   ) { }
   obtenerTutores(): Observable<Tutor[]>{
-    this.http.get<Tutor[]>(`${environment.api}/tutor`).subscribe((dato)=>{
-      console.log(dato);
-    });
     return this.http.get<Tutor[]>(`${environment.api}/tutor`);
   }
 

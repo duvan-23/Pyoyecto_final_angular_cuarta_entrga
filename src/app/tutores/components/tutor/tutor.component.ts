@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Store } from '@ngrx/store';
@@ -11,6 +12,7 @@ import { Tutor } from 'src/app/models/tutor';
 import { agregarTutor, cargarTutores, eliminarTutor } from '../../state/tutores.actions';
 import { TutorState } from '../../state/tutores.reducer';
 import { selectTutores } from '../../state/tutores.selectors';
+import { EditarTutorComponent } from '../editar-tutor/editar-tutor.component';
 
 @Component({
   selector: 'app-tutor',
@@ -23,13 +25,14 @@ export class TutorComponent implements OnInit {
   nombreTutor!: string;
   correoTutor!: string;
   dataSource!:MatTableDataSource<Tutor>;
-  columnas: string[] = ['id', 'curso', 'tutor', 'acciones'];
+  columnas: string[] = ['id', 'curso', 'tutor','correo', 'acciones'];
   session$!:Observable<Session>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   constructor(
     private storeTutores: Store<TutorState>,
     private cursoService: CursosService,
-    private sessionService: SessionService
+    private sessionService: SessionService,
+    private dialog: MatDialog
   ) {
     this.storeTutores.dispatch(cargarTutores());
    }
@@ -56,7 +59,10 @@ export class TutorComponent implements OnInit {
   }
 
   editar(tutor:Tutor){
-    console.log(tutor);
+    this.dialog.open(EditarTutorComponent,{
+      width: '300px',
+      data: tutor
+    })
   }
   eliminar(tutor:Tutor){
     this.storeTutores.dispatch(eliminarTutor({tutor}));

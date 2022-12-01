@@ -36,7 +36,6 @@ export class QuitarCursoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.dataEstudiante);
 
     this.cursos$ = this.cursoService.obtenerCursos();
     this.cursos$.subscribe((data)=>{

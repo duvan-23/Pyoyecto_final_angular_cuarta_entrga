@@ -27,7 +27,7 @@ export class CursosService {
       headers: new HttpHeaders(environment.header)
     }).pipe(
       catchError(this.manejaError)
-    ).subscribe(console.log);
+    ).subscribe();
   }
   // obtenerId():number{
   //   return this.cursos[this.cursos.length -1].id+1;
@@ -42,7 +42,7 @@ export class CursosService {
   editarCurso(curso: Curso){
     this.http.put<Curso>(`${environment.api}/cursosProyecto/${curso.id}`,curso).pipe(
       catchError(this.manejaError)
-    ).subscribe(console.log);
+    ).subscribe();
   }
 
   private manejaError(error: HttpErrorResponse){

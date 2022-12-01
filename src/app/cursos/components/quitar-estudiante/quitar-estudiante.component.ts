@@ -38,28 +38,6 @@ export class QuitarEstudianteComponent implements OnInit {
     this.dataEstudiante.estudiante.forEach((element:any)=> {
       this.estudiante2.push(element[0]);
     });
-    console.log(this.estudiante2);
-    // this.cursos$ = this.cursoService.obtenerCursos();
-    // this.cursos$.subscribe((data)=>{
-    //   this.cursos2=data.filter(val => val.inscripcionAbierta === true).map(data => data);
-    // });
-    // this.estudiantes$= this.estudainteService.obtenerEstudiante(this.dataEstudiante.id);
-    // this.estudiantes$.subscribe((data)=>{
-    //   this.estudiante2=[];
-    //   data.forEach((element) => {
-    //     this.cursoService.obtenerCursos().subscribe((data2)=>{
-    //       element.nombre_curso.forEach((element2)=>{
-    //         data2.forEach((element3) => {
-    //           let nombre =element3.nombre+" "+element3.comision;
-    //           if(nombre == element2){
-    //             this.estudiante2.push(element3);
-    //           }
-    //         });
-    //       })
-
-    //     });
-    //   });
-    // })
   }
   guardar(){
     this.dialogRef.close(this.formularioEstudianteCurso.value);
