@@ -70,7 +70,11 @@ export class EstudiantesComponent implements OnInit, AfterViewInit  {
     dialog.beforeClosed().subscribe(res=>{
       if(res.nombre){
         this.estudianteService.agregarEstudiante({
-          ...res,
+          nombre: res.nombre,
+          apellido: res.apellido,
+          correo:res.correo,
+          nombre_curso: [res.nombre_curso],
+          edad: res.edad,
           id: this.estudianteService.obtenerId()
         });
         this.dataSource.paginator = this.paginator;
